@@ -1,3 +1,140 @@
 main {
   background: var(--bg-box);
+  border-radius: 6px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+
+.todo-list {
+  max-height: 250px;
+  min-height: 200px;
+  overflow: auto;
+  list-style: none;
+  scrollbar-width: none;
+}
+
+.todo-list::-webkit-scrollbar {
+  display: none;
+}
+
+.todo-item {
+  height: 45px;
+  border-bottom: 1px solid var(--border);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox input {
+  display: none;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgb(91, 86, 86);
+  border-radius: 50%;
+  position: relative;
+}
+
+.checkbox input:checked + .checkmark {
+  background: linear-gradient(#57ddff, #c058f3);
+}
+
+.checkbox input:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  width: 4px;
+  height: 7px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.text {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.checkbox input:checked ~ .text {
+  color: var(--line-through);
+  text-decoration: line-through;
+}
+
+.delete-btn {
+  display: none;
+  width: 14px;
+  height: 14px;
+  background: url("../assets/icon-cross.svg");
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-item:hover .delete-btn {
+  display: block;
+}
+
+.footer-box {
+  font-size: 0.9rem;
+  color: var(--text);
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.clear {
+  transition: all 0.2s;
+}
+
+.clear:hover {
+  color: #ad5555;
+}
+
+.filter-box {
+  height: 50px;
+  background: var(--bg-box);
+  margin-top: 20px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  transition: all 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.filter {
+  cursor: pointer;
+  color: #67697d;
+}
+
+.filter:hover {
+  color: #9294a5;
+}
+
+.filter-box .filter.active {
+  color: #3a7bfd;
+}
+
+.filter-box .filter.active:hover {
+  color: #0055ff;
+}
+
+@media (max-width: 624px) {
+  .delete-btn {
+    display: initial;
+  }
 }

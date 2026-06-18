@@ -1,18 +1,25 @@
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic);
 
 :root {
+  --bg-image: url("./assets/bg-desktop-dark.jpg");
   --bg-color: #181824;
   --bg-box: #25273c;
   --icon: url(./assets/icon-sun.svg);
   --text: #a9abc4;
+  --line-through: #4e5067;
+  --btn: #1e1f2f;
+  --border: #37394e;
 }
 
 .light {
+  --bg-image: url("./assets/bg-desktop-light.jpg");
   --bg-color: #fafafa;
   --bg-box: #fff;
-
   --icon: url(./assets/icon-moon.svg);
-  --text: #474657;
+  --text: #4a4a5a;
+  --line-through: #d1d1d3;
+  --btn: #e7e8f0;
+  --border: #e6e5e9;
 }
 
 * {
@@ -33,6 +40,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s;
 }
 
 .container {

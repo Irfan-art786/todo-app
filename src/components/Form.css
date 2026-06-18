@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  transition: all 0.3s;
 }
 
 .form-filed input {
@@ -32,7 +33,7 @@
 
 .form-filed button {
   padding: 0 30px;
-  background: #1e1f2f;
+  background: var(--btn);
   align-self: stretch;
   border: none;
   border-radius: 6px;
