@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic);
+
+:root {
+  --bg-color: #181824;
+  --bg-box: #25273c;
+  --icon: url(./assets/icon-sun.svg);
+  --text: #a9abc4;
+}
+
+.light {
+  --bg-color: #fafafa;
+  --bg-box: #fff;
+
+  --icon: url(./assets/icon-moon.svg);
+  --text: #474657;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Josefin sans", sans-serif, Arial;
+}
+
+#root {
+  min-height: 100vh;
+  background: var(--bg-color);
+  padding: 0 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 520px;
+}

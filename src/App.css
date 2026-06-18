@@ -1,0 +1,18 @@
+:root {
+  --bg-image: url("./assets/bg-desktop-dark.jpg");
+}
+
+.light {
+  --bg-image: url("./assets/bg-desktop-light.jpg");
+}
+
+.over-lay {
+  height: 33vh;
+  width: 100%;
+  background: var(--bg-image);
+  background-size: cover;
+
+  position: fixed;
+  top: 0;
+  z-index: 0;
+}
