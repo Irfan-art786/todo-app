@@ -28,6 +28,7 @@ function App() {
           title: newTask,
           completed: false,
           filter: "all",
+          deleting: false,
         },
       ];
     });

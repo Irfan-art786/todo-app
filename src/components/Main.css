@@ -17,13 +17,40 @@ main {
   display: none;
 }
 
-.todo-item {
+.todo-list li {
   height: 45px;
   border-bottom: 1px solid var(--border);
   padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  animation: slideIn 0.4s;
+}
+
+.todo-list li.slide-out {
+  animation: slideOut 0.4s;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
 }
 
 .checkbox {
@@ -33,7 +60,7 @@ main {
   cursor: pointer;
 }
 
-.checkbox input {
+.checkbox .checkbox-input {
   display: none;
 }
 
@@ -66,19 +93,55 @@ main {
   font-size: 0.9rem;
 }
 
+.edit-input {
+  background: transparent;
+  border: 1px solid rgb(52, 49, 80);
+  border-radius: 6px;
+  outline: none;
+  padding: 6px 12px;
+  color: var(--text);
+}
+
+.edit-input:hover {
+  border: 1px solid rgb(90, 88, 110);
+}
+
 .checkbox input:checked ~ .text {
   color: var(--line-through);
   text-decoration: line-through;
 }
 
-.delete-btn {
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.edit-btn,
+.delete-btn,
+.save-btn {
   display: none;
-  width: 14px;
-  height: 14px;
-  background: url("../assets/icon-cross.svg");
-  background-size: cover;
+  background: none;
   border: none;
+  font-size: 1.25rem;
+  color: #494c6b;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.edit-btn:hover {
+  transform: scale(1.05);
+  color: #6f700c;
+}
+
+.delete-btn:hover {
+  transform: scale(1.05);
+  color: #ad5555;
+}
+
+.save-btn:hover {
+  transform: scale(1.05);
+  color: #55ad6f;
 }
 
 .todo-item:hover .delete-btn {
@@ -134,6 +197,12 @@ main {
 }
 
 @media (max-width: 624px) {
+  .edit-btn {
+    display: initial;
+  }
+  .save-btn {
+    display: initial;
+  }
   .delete-btn {
     display: initial;
   }

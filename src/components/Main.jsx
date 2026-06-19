@@ -3,6 +3,10 @@ import "./Main.css";
 
 export function Main({ todos, setTodos }) {
   const [filter, setFilter] = useState("all");
+  const [editingId, setEditingId] = useState(null);
+  const [editTask, setEditTask] = useState("");
+
+  const itemsLeft = todos.filter((todo) => !todo.completed).length;
 
   const filteredTodos = todos.filter((todo) => {
     switch (filter) {
@@ -26,14 +30,33 @@ export function Main({ todos, setTodos }) {
   }
 
   function hundleDelete(id) {
-    setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
+    setTodos((currentTodos) =>
+      currentTodos.map((todo) =>
+        todo.id === id ? { ...todo, deleting: true } : todo,
+      ),
+    );
+
+    setTimeout(() => {
+      setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
+    }, 300);
   }
 
   function clearCompleted() {
     setTodos((currentTodos) => currentTodos.filter((todo) => !todo.completed));
   }
 
-  const itemsLeft = todos.filter((todo) => !todo.completed).length;
+  function hundleEdit(id) {
+    if (editTask === "") return;
+
+    setTodos((currenttodos) =>
+      currenttodos.map((todo) =>
+        todo.id === id ? { ...todo, title: editTask } : todo,
+      ),
+    );
+
+    setEditTask("     ")
+    setEditingId(null);
+  }
 
   return (
     <>
@@ -41,20 +64,59 @@ export function Main({ todos, setTodos }) {
         <ul className="todo-list">
           {filteredTodos.map((todo) => {
             return (
-              <li key={todo.id} className="todo-item">
+              <li key={todo.id} className={todo.deleting ? "slide-out" : ""}>
                 <label className="checkbox">
                   <input
+                    className="checkbox-input"
                     onChange={() => hundleToggle(todo.id)}
                     type="checkbox"
                     checked={todo.completed}
                   />
                   <span className="checkmark"></span>
-                  <span className="text">{todo.title}</span>
+
+                  {editingId === todo.id ? (
+                    <input
+                      className="edit-input"
+                      type="text"
+                      value={editTask}
+                      autoFocus
+                      onChange={(e) => setEditTask(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          hundleEdit(todo.id);
+                        } else if (e.key === "Escape") {
+                          setEditingId(null);
+                        }
+                      }}
+                    />
+                  ) : (
+                    <span className="text">{todo.title}</span>
+                  )}
                 </label>
-                <button
-                  onClick={() => hundleDelete(todo.id)}
-                  className="delete-btn"
-                ></button>
+                <div className="buttons">
+                  {editingId === todo.id ? (
+                    <button
+                      className="save-btn"
+                      onClick={() => hundleEdit(todo.id)}
+                    >
+                      <i className="fa-solid fa-floppy-disk"></i>
+                    </button>
+                  ) : (
+                    <button
+                      className="edit-btn"
+                      onClick={() => setEditingId(todo.id)}
+                    >
+                      <i className="fa-solid fa-pen-to-square"></i>{" "}
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() => hundleDelete(todo.id)}
+                    className="delete-btn"
+                  >
+                    <i className="fa-solid fa-x"></i>
+                  </button>
+                </div>
               </li>
             );
           })}
