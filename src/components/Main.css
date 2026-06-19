@@ -116,20 +116,20 @@ main {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.filter {
+.filter-box span {
   cursor: pointer;
   color: #67697d;
 }
 
-.filter:hover {
+.filter-box span:hover {
   color: #9294a5;
 }
 
-.filter-box .filter.active {
+.filter-box span.active {
   color: #3a7bfd;
 }
 
-.filter-box .filter.active:hover {
+.filter-box span.active:hover {
   color: #0055ff;
 }
 

@@ -1,17 +1,44 @@
+import { useState } from "react";
 import { Header } from "./components/Header";
 import { Form } from "./components/Form";
 import { Main } from "./components/Main";
 import "./App.css";
 
 function App() {
+  const [newTask, setNewTask] = useState("");
+  const [todos, setTodos] = useState([]);
+
+  function hundleSubmit(e) {
+    e.preventDefault();
+    if (newTask === "") return; // check task exist
+
+    setTodos((currentTodos) => {
+      return [
+        ...currentTodos,
+        {
+          id: crypto.randomUUID(),
+          title: newTask,
+          completed: false,
+          filter: "all",
+        },
+      ];
+    });
+
+    setNewTask(""); // make input empty after search
+  }
+
   return (
     <>
       <div className="over-lay"></div>
 
       <div className="container">
         <Header />
-        <Form />
-        <Main />
+        <Form
+          newTask={newTask}
+          setNewTask={setNewTask}
+          hundleSubmit={hundleSubmit}
+        />
+        <Main todos={todos} setTodos={setTodos} />
       </div>
     </>
   );
